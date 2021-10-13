@@ -1,6 +1,6 @@
 # Ecommerce MERN stack web application
 
-### Technologu used:
+### Technology used:
 
     MongoDB
     Express.JS
