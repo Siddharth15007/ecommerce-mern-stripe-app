@@ -1,3 +1,33 @@
+# Ecommerce MERN stack web application
+
+### Technologu used:
+
+    MongoDB
+    Express.JS
+    React.JS / Redux {State management}
+    Node.JS
+    Stripe Payment gateway
+
+## Ecommerce MERN web app: Home Page
+
+![Homepage](./snapshots/Ecommerce_Mern_Home_page.png)
+
+## Ecommerce MERN web app: Product List Page
+
+![Homepage](./snapshots/Ecommerce_Mern_Productlist_page.png)
+
+## Ecommerce MERN web app: Product details Page
+
+![Homepage](./snapshots/Ecommerce_Mern_Product_page.png)
+
+## Ecommerce MERN web app: Cart Page
+
+![Homepage](./snapshots/ecommerce_mern_cart_page.png)
+
+## Ecommerce MERN web app: Payment Gateway Page
+
+![Homepage](./snapshots/Ecommerce_Mern_Stripe_Payment_gateway_page.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
