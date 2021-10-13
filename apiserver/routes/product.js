@@ -3,23 +3,25 @@ const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("./verifyToken");
-const ProductModel = require("../models/Product");
+const Product = require("../models/Product");
 const router = require("express").Router();
 
 //CREATE
-router.post("/", verifyTokenAndAdmin, async (req, res) => {
-  const newProduct = new ProductModel(req.body);
+router.post("/newProduct", verifyTokenAndAdmin, async (req, res) => {
+  const newProduct = new Product(req.body);
 
   try {
     const savedProduct = await newProduct.save();
     res.status(200).json(savedProduct);
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 //UPDATE
 router.put("/update/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const updateProduct = await ProductModel.findByIdAndUpdate(
+    const updateProduct = await Product.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
@@ -35,7 +37,7 @@ router.put("/update/:id", verifyTokenAndAuthorization, async (req, res) => {
 //DELETE USER
 router.delete("/delete/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    await ProductModel.findByIdAndDelete(req.params.id);
+    await Product.findByIdAndDelete(req.params.id);
     res.status(200).json("Product has been deleted...");
   } catch (error) {
     res.status(500).json(error);
@@ -45,7 +47,7 @@ router.delete("/delete/:id", verifyTokenAndAdmin, async (req, res) => {
 //GET PRODUCT
 router.get("/find/:id", async (req, res) => {
   try {
-    const product = await ProductModel.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
     res.status(200).json(product);
   } catch (error) {
     res.status(500).json(error);
@@ -59,15 +61,15 @@ router.get("/", async (req, res) => {
   try {
     let products;
     if (qNew) {
-      products = await ProductModel.find().sort({ createdAt: -1 }).limit(5);
+      products = await Product.find().sort({ createdAt: -1 }).limit(5);
     } else if (qCategory) {
-      products = await ProductModel.find({
+      products = await Product.find({
         categories: {
           $in: [qCategory],
         },
       });
     } else {
-      products = await ProductModel.find();
+      products = await Product.find();
     }
     res.status(200).json(products);
   } catch (error) {
